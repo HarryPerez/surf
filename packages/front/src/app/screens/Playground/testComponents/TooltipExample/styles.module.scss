@@ -1,0 +1,35 @@
+@import 'variables/colors';
+
+@import 'variables/breakpoints';
+
+.tooltip-example {
+  display: flex;
+  align-items: center;
+
+  @include sm {
+    flex-direction: column;
+    justify-content: center;
+  }
+}
+
+.tooltips {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+
+  @include sm {
+    flex-direction: column;
+  }
+}
+
+.custom-tooltip {
+  height: 120px;
+  width: 200px;
+  padding: 20px;
+  background-color: $valencia;
+  margin-bottom: 20px;
+  white-space: normal;
+  &::before {
+    border-top-color: $valencia;
+  }
+}

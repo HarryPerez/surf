@@ -1,0 +1,27 @@
+stages:
+  - triggers
+
+workflow:
+  rules:
+    # don't create a pipeline if its a commit pipeline, on a branch and that branch has open merge requests (bc we will get a MR build instead)
+    - if: $CI_PIPELINE_SOURCE == "push" && $CI_COMMIT_BRANCH && $CI_OPEN_MERGE_REQUESTS
+      when: never
+    - when: always
+
+trigger_back:
+  stage: triggers
+  trigger:
+    include: packages/back/.gitlab-ci.yml
+    strategy: depend
+  rules:
+    - changes:
+        - packages/back/*
+
+trigger_front:
+  stage: triggers
+  trigger:
+    include: packages/front/.gitlab-ci.yml
+    strategy: depend
+  rules:
+    - changes:
+        - packages/front/*

@@ -1,0 +1,42 @@
+@import 'src/scss/variables/colors';
+
+$arrow-size: 6px;
+$background-color: $black;
+$text-color: $white;
+.container {
+  display: inline-block;
+  position: relative;
+}
+.tooltip {
+  background: $background-color;
+  border-radius: 4px;
+  color: $text-color;
+  font-family: sans-serif;
+  font-size: 14px;
+  left: 50%;
+  line-height: 1;
+  padding: 6px;
+  position: absolute;
+  transform: translateX(-50%);
+  white-space: nowrap;
+  z-index: 100;
+}
+.tooltip::before {
+  border: solid transparent;
+  border-width: $arrow-size;
+  content: ' ';
+  height: 0;
+  left: 50%;
+  margin-left: calc(-6px);
+  pointer-events: none;
+  position: absolute;
+  width: 0;
+}
+.tooltip-top {
+  bottom: 100%;
+  left: 50%;
+}
+.tooltip-top::before {
+  border-top-color: $background-color;
+  top: 100%;
+}

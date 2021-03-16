@@ -1,0 +1,20 @@
+@import 'variables/colors';
+
+@import 'variables/breakpoints';
+
+.navbar-container {
+  background: $navbar-color;
+  border-bottom: 2px solid $silver;
+  font-size: 18px;
+  font-weight: bold;
+  width: 100%;
+  z-index: 100;
+}
+
+.navbar {
+  height: 90px;
+  margin: 0 auto;
+  max-width: $breakpoint-xl;
+  padding: 0 45px;
+  position: relative;
+}

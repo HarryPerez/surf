@@ -1,0 +1,55 @@
+{
+    "AWSEBDockerrunVersion": 2,
+    "containerDefinitions": [
+        {
+            "memory": "100",
+            "image": "zerfdev/bootstrap-node",
+            "command": [
+                "npm",
+                "run",
+                "start-dev"
+            ],
+            "environment": [
+                {
+                    "name": "NODE_ENV",
+                    "value": "development"
+                }
+            ],
+            "essential": true,
+            "links": [
+                "db"
+            ],
+            "name": "back",
+            "portMappings": [
+                {
+                    "containerPort": 8080,
+                    "hostPort": 8080
+                }
+            ]
+        },
+        { 
+            "memory": "500",
+            "environment": [
+                {
+                    "name": "MONGO_USER",
+                    "value": "admin"
+                },
+                {
+                    "name": "MONGO_PASS",
+                    "value": "admin"
+                }
+            ],
+            "essential": true,
+            "image": "mongo",
+            "name": "db",
+            "portMappings": [
+                {
+                    "containerPort": 27017,
+                    "hostPort": 27017
+                }
+            ]
+        }
+    ],
+    "family": "",
+    "volumes": []
+}

@@ -1,0 +1,28 @@
+
+@import 'variables/breakpoints';
+
+.container {
+  display: flex;
+  @include sm {
+    flex-direction: column;
+  }
+  gap: 15px;
+}
+
+.mobile-navbar {
+  display: none;
+  position: relative;
+  @include md {
+    display: block;
+  }
+}
+
+.dropdown {
+  position: absolute;
+}
+
+.wide-navbar {
+  @include md {
+    display: none;
+  }
+}

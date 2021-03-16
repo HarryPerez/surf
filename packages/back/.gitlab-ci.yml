@@ -1,0 +1,35 @@
+stages:
+  - test
+
+image: node:lts
+
+workflow:
+  rules:
+    - changes:
+        - packages/back/*
+
+variables:
+  MONGO_INITDB_ROOT_USERNAME: root
+  MONGO_INITDB_ROOT_PASSWORD: root
+  DB_NAME: emic
+  DB_NAME_TEST: emic_testing
+  DB_HOST: mongo
+  DB_USER: root
+  DB_PASSWORD: root
+  DB_PORT: '27017'
+  DB_PREFIX: mongodb
+  PORT: '8080'
+  JWT_SECRET: asdasdasdasdad
+  JWT_HEADER_NAME: authorization
+  JWT_EXPIRATION_TIME: 1h
+  PASSWORD_CHANGE_SECRET: asdfasfsf
+  MAIL_SENDER: sdasd@zerf.com.ar
+
+test:
+  stage: test
+  services:
+    - mongo:4.2.2
+  script:
+    - cd ./packages/back
+    - yarn install
+    - npm run test

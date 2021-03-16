@@ -1,0 +1,45 @@
+version: '3.8'
+services:
+  back:
+    environment:
+      - NODE_ENV=development
+    container_name: back
+    build:
+      context: ./packages/back
+      dockerfile: Dockerfile
+    ports: ['8080:8080']
+    depends_on: ['db']
+    command: 'npm run start-dev'
+    volumes:
+      - './packages/back:/back'
+      - './packages/back/node_modules'
+  db:
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=admin
+      - MONGO_INITDB_ROOT_PASSWORD=admin
+      - MONGO_INITDB_DATABASE=bootstrapDB
+    container_name: db
+    image: mongo
+    ports: ['27017:27017']
+    volumes:
+      - ./mongo-settings/seed.json:/home/mongodb/seed.json
+      - ./mongo-settings/mongo-init.sh:/docker-entrypoint-initdb.d/mongo-init.sh:ro
+  front:
+    container_name: front
+    stdin_open: true
+    build:
+      context: ./packages/front
+      dockerfile: Dockerfile
+    ports:
+      - '3000:3000'
+    volumes:
+      - './packages/front:/front'
+      - './packages/front/node_modules'
+    command: 'yarn start'
+
+volumes:
+  back:
+  front:
+
+networks:
+  default:

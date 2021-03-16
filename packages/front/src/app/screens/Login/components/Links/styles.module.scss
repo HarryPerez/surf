@@ -1,0 +1,22 @@
+
+@import 'src/scss/variables/colors';
+
+@import 'src/scss/variables/breakpoints';
+
+.sign-up-container {
+  @include xs {
+    align-items: center;
+    flex-direction: column;
+  }
+}
+
+.sign-up {
+  color: $azure;
+  @include xs {
+    margin-top: 5px;
+  }
+}
+
+.sign-up:hover {
+  color: $blue;
+}
